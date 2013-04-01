@@ -77,7 +77,9 @@
 (defadvice ruby-compilation-do (before skaes/ruby-compilation-do activate)
   (rvm-activate-corresponding-ruby))
 
-(add-hook 'ruby-mode-hook (lambda () (local-set-key [f8] 'ruby-compilation-rake-unconditionally)))
+(add-hook 'ruby-mode-hook (lambda () (local-set-key (kbd "C-x r") 'ruby-compilation-rake-unconditionally)))
+(add-hook 'ruby-mode-hook (lambda () (local-set-key (kbd "C-x t") 'ruby-compilation-this-test)))
+(add-hook 'ruby-mode-hook (lambda () (local-set-key (kbd "C-x a") 'ruby-compilation-this-buffer)))
 
 ;; (defvar ruby-test-search-testcase-re
 ;;   "^[ \\t]*def[ \\t]+\\(test[_a-z0-9]*\\)")
