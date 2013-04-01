@@ -64,7 +64,7 @@
 
 (require 'ruby-compilation)
 
-(defadvice ruby-compilation-adjust-paths (after ruby-compilation-fix-crs activate)
+(defadvice ruby-compilation--adjust-paths (after ruby-compilation-fix-crs activate)
   "remove trailing carriage returns from ruby compilation output."
   (setq ad-return-value (replace-regexp-in-string "\r$" "" ad-return-value)))
 ;; (ad-unadvise 'ruby-compilation-adjust-paths)
