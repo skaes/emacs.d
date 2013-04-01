@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: do |...|
+# key: dop
+# --
+do |${1:p}|
+  $0
+end
