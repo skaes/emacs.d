@@ -1,4 +1,5 @@
-(global-rinari-mode)
+(if (boundp 'global-rinari-mode)
+    (global-rinari-mode))
 
 (defun update-rails-ctags ()
   (interactive)
