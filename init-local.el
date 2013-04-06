@@ -260,4 +260,14 @@
       )))
 
 
+
+;;-------------------------------------------------------
+;; reset colors when running inside terminal
+;;-------------------------------------------------------
+(unless window-system
+  (progn
+    (set-face-background 'default "black")
+    (set-face-foreground 'default "white")
+   ))
+
 (provide 'init-local)
