@@ -101,6 +101,11 @@
       (message "no test case found")
       )))
 
+;;----------------
+;; feature mode
+;;---------------
+(require-package 'feature-mode)
+
 ;;-------------------
 ;; Bells and whistles
 ;;-------------------
