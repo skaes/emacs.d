@@ -206,6 +206,10 @@
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
 
+(require 'ag)
+(setq ag-highlight-search t)
+(setq ag-reuse-buffers 't)
+
 ;;----------------------------------------------------------------------------
 ;; Project Support
 ;;----------------------------------------------------------------------------
@@ -226,7 +230,7 @@
 (global-set-key (kbd "C-c p t") 'ido-find-file-in-tag-files)
 (global-set-key (kbd "C-c p s") 'ack-find-same-file)
 (global-set-key (kbd "C-c p g") 'project-root-rgrep)
-(global-set-key (kbd "C-c p a") 'ack)
+(global-set-key (kbd "C-c p a") 'ag)
 (global-set-key (kbd "C-c p d") 'project-root-goto-root)
 (global-set-key (kbd "C-c p p") 'project-root-run-default-command)
 
