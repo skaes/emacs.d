@@ -13,7 +13,7 @@
 (require-package 'yasnippet)
 (require 'yasnippet)
 (yas-global-mode 0)
-(yas-reload-all)
+;; (yas-reload-all)
 (add-hook 'ruby-mode-hook '(lambda () (yas-minor-mode)))
 (add-hook 'html-mode-hook '(lambda () (yas-minor-mode)))
 
