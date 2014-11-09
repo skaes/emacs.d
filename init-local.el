@@ -3,6 +3,8 @@
 (global-set-key (kbd "M-+") 'increase-default-font-height)
 (global-set-key (kbd "M--") 'decrease-default-font-height)
 
+;; set c indentation to 4 spaces
+(setq c-basic-offset 4)
 
 ;; additional packages
 ;;--------------------
