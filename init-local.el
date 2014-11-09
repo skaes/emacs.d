@@ -251,6 +251,9 @@
 
 ;; (require 'guess-offset)
 
+;; turn off autofill in html-erb-mode
+(require 'mmm-erb)
+(add-hook 'html-erb-mode-hook (lambda () (auto-fill-mode 0)))
 
 (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m t nil)
 (add-hook 'compilation-filter-hook 'compile-strip-ctrl-m t nil)
