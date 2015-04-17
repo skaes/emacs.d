@@ -10,7 +10,6 @@
 (setq ruby-use-encoding-map nil)
 
 (after-load 'ruby-mode
-  (define-key ruby-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
   (define-key ruby-mode-map (kbd "TAB") 'indent-for-tab-command)
 
   ;; Stupidly the non-bundled ruby-mode isn't a derived mode of
@@ -52,11 +51,17 @@
 (require-package 'robe)
 (after-load 'ruby-mode
   (add-hook 'ruby-mode-hook 'robe-mode))
+
+(defun sanityinc/maybe-enable-robe-ac ()
+  "Enable/disable robe auto-complete source as necessary."
+  (if robe-mode
+      (progn
+        (add-hook 'ac-sources 'ac-source-robe nil t)
+        (set-auto-complete-as-completion-at-point-function))
+    (remove-hook 'ac-sources 'ac-source-robe)))
+
 (after-load 'robe
-  (add-hook 'robe-mode-hook
-            (lambda ()
-              (add-to-list 'ac-sources 'ac-source-robe)
-              (set-auto-complete-as-completion-at-point-function))))
+  (add-hook 'robe-mode-hook 'sanityinc/maybe-enable-robe-ac))
 
 
 

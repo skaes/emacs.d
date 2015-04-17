@@ -34,3 +34,6 @@ site-lisp/package/
 /image-dired/
 /eshell
 .DS_Store
+/.cask/
+/.sx/
+/org-clock-save.el
