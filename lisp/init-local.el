@@ -1,7 +1,7 @@
 ;; override some of steve's decisions
 (setq-default line-spacing 0.2)
-(global-set-key (kbd "M-+") 'increase-default-font-height)
-(global-set-key (kbd "M--") 'decrease-default-font-height)
+(global-set-key (kbd "M-+") 'default-text-scale-increase)
+(global-set-key (kbd "M--") 'default-text-scale-decrease)
 
 ;; set c indentation to 4 spaces
 (setq c-basic-offset 4)
