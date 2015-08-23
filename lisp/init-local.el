@@ -44,6 +44,11 @@
 
 (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
 
+;;-----------
+;; GO stuff
+;;-----------
+(require-package 'go-mode)
+
 ;;----------------
 ;; RVM integration
 ;;---------------
