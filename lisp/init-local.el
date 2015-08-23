@@ -108,6 +108,8 @@
       (message "no test case found")
       )))
 
+(add-auto-mode 'ruby-mode "Appraisals\\'")
+
 ;;----------------
 ;; feature mode
 ;;---------------
