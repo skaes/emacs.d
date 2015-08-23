@@ -3,6 +3,11 @@
 (global-set-key (kbd "M-+") 'default-text-scale-increase)
 (global-set-key (kbd "M--") 'default-text-scale-decrease)
 
+;; I don't think I like electric pair mode. turn it off.
+(electric-pair-mode -1)
+;; and I prefer classic emacs undo
+(global-undo-tree-mode -1)
+
 ;; set c indentation to 4 spaces
 (setq c-basic-offset 4)
 
