@@ -220,7 +220,7 @@
 ;;----------------------------------------------------------------------------
 ;; Project Support
 ;;----------------------------------------------------------------------------
-(require 'project-root)
+(require-package 'project-root)
 (setq project-roots
       '(("Rails Project" :root-contains-files ("Rakefile" "app" "config" "lib" "log"))
         ("Gem Project" :root-contains-files (".git" "lib" "Rakefile"))
