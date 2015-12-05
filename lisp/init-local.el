@@ -222,9 +222,13 @@
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
 
+;; silver searcher
 (require 'ag)
 (setq ag-highlight-search t)
 (setq ag-reuse-buffers 't)
+
+;; rdoc mode
+(require 'rdoc-mode)
 
 ;;----------------------------------------------------------------------------
 ;; Project Support
