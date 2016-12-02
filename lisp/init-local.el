@@ -57,6 +57,11 @@
 ;; GO stuff
 ;;-----------
 (require-package 'go-mode)
+(add-hook 'go-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (setq tab-width 4)
+            (setq indent-tabs-mode 1)))
 
 ;;----------------
 ;; RVM integration
@@ -238,6 +243,9 @@
       '(("Rails Project" :root-contains-files ("Rakefile" "app" "config" "lib" "log"))
         ("Gem Project" :root-contains-files (".git" "lib" "Rakefile"))
         ("C Project" :root-contains-files (".git" "Makefile"))
+        ("Go Project" :root-contains-files (".git") :path-matches "~/go"
+         :filename-regex ,(regexify-ext-list '(go))
+         :on-hit (lambda (p) (setenv "GOPATH" "~/go")))
         ))
 
 (defun project-root-rgrep ()
