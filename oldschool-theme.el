@@ -3,7 +3,7 @@
 
 (custom-theme-set-faces
  'oldschool
- '(default ((t (:inherit nil :stipple nil :background "darkslategrey" :foreground "peachpuff" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 150 :width normal :foundry "apple" :family "Menlo"))))
+ '(default ((t (:inherit nil :stipple nil :background "darkslategrey" :foreground "peachpuff" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "apple" :family "Menlo"))))
  '(cursor ((t (:background "pink"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(variable-pitch ((t (:family "Sans Serif"))))
