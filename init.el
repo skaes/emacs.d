@@ -3,7 +3,7 @@
 ;;; a number of other files.
 
 (let ((minver "23.3"))
-  (when (version<= emacs-version "23.1")
+  (when (version<= emacs-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
 (when (version<= emacs-version "24")
   (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
@@ -62,9 +62,13 @@
 (require 'init-flycheck)
 
 (require 'init-recentf)
-(require 'init-ido)
+(require 'init-smex)
+;; If you really prefer ido to ivy, change the comments below. I will
+;; likely remove the ido config in due course, though.
+;; (require 'init-ido)
+(require 'init-ivy)
 (require 'init-hippie-expand)
-(require 'init-auto-complete)
+(require 'init-company)
 (require 'init-windows)
 ;; (require 'init-sessions)
 (require 'init-fonts)
@@ -78,6 +82,8 @@
 (require 'init-darcs)
 (require 'init-git)
 (require 'init-github)
+
+(require 'init-projectile)
 
 (require 'init-compile)
 (require 'init-crontab)
@@ -93,7 +99,8 @@
 (require 'init-css)
 (require 'init-haml)
 (require 'init-python-mode)
-(require 'init-haskell)
+(unless (version<= emacs-version "24.3")
+  (require 'init-haskell))
 (require 'init-elm)
 (require 'init-ruby-mode)
 (require 'init-rails)
@@ -112,6 +119,7 @@
 
 (require 'init-misc)
 
+(require 'init-folding)
 (require 'init-dash)
 (require 'init-ledger)
 ;; Extra packages which don't require any configuration
@@ -142,8 +150,6 @@
 ;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-local" containing personal settings
 ;;----------------------------------------------------------------------------
-(when (file-exists-p (expand-file-name "init-local.el" user-emacs-directory))
-  (error "Please move init-local.el to ~/.emacs.d/lisp"))
 (require 'init-local nil t)
 
 
@@ -151,11 +157,6 @@
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
-
-(add-hook 'after-init-hook
-          (lambda ()
-            (message "init completed in %.2fms"
-                     (sanityinc/time-subtract-millis after-init-time before-init-time))))
 
 
 (provide 'init)
