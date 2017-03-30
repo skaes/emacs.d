@@ -12,6 +12,19 @@
 
 
 
+;;; Install into separate package dirs for each Emacs version, to prevent bytecode incompatibility
+(let ((versioned-package-dir
+       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
+                         user-emacs-directory)))
+  (when (file-directory-p package-user-dir)
+    (message "Default package locations have changed in this config: renaming old package dir %s to %s."
+             package-user-dir
+             versioned-package-dir)
+    (rename-file package-user-dir versioned-package-dir))
+  (setq package-user-dir versioned-package-dir))
+
+
+
 ;;; Standard package repositories
 
 (when (< emacs-major-version 24)
@@ -25,10 +38,16 @@
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
+
+(defconst sanityinc/no-ssl (or (< emacs-major-version 24)
+                               (and (memq system-type '(windows-nt ms-dos))
+                                    (not (gnutls-available-p)))))
+
 ;;; Also use Melpa for most packages
-(add-to-list 'package-archives `("melpa" . ,(if (< emacs-major-version 24)
-                                                "http://melpa.org/packages/"
-                                              "https://melpa.org/packages/")))
+(add-to-list 'package-archives
+             `("melpa" . ,(if sanityinc/no-ssl
+                              "http://melpa.org/packages/"
+                            "https://melpa.org/packages/")))
 
 ;; NOTE: In case of MELPA problems, the official mirror URL is
 ;; https://www.mirrorservice.org/sites/stable.melpa.org/packages/
