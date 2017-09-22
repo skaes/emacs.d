@@ -63,6 +63,11 @@
             (setq tab-width 4)
             (setq indent-tabs-mode 1)))
 
+;;-----------
+;; Rockerfiles
+;;-----------
+(require 'rockerfile-mode)
+
 ;;----------------
 ;; RVM integration
 ;;---------------
