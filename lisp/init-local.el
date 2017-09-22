@@ -15,6 +15,12 @@
 ;; set c indentation to 4 spaces
 (setq c-basic-offset 4)
 
+;; turn on visual line mode
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+;; (require-package 'visual-fill-column)
+;; (require 'visual-fill-column)
+;; (add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
+
 ;; additional packages
 ;;--------------------
 ;; yasnippet
