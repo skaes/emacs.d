@@ -238,29 +238,29 @@
 ;;----------------------------------------------------------------------------
 ;; Project Support
 ;;----------------------------------------------------------------------------
-(require-package 'project-root)
-(setq project-roots
-      '(("Rails Project" :root-contains-files ("Rakefile" "app" "config" "lib" "log"))
-        ("Gem Project" :root-contains-files (".git" "lib" "Rakefile"))
-        ("C Project" :root-contains-files (".git" "Makefile"))
-        ("Go Project" :root-contains-files (".git") :path-matches "~/go"
-         :filename-regex ,(regexify-ext-list '(go))
-         :on-hit (lambda (p) (setenv "GOPATH" "~/go")))
-        ))
+;; (require-package 'project-root)
+;; (setq project-roots
+;;       '(("Rails Project" :root-contains-files ("Rakefile" "app" "config" "lib" "log"))
+;;         ("Gem Project" :root-contains-files (".git" "lib" "Rakefile"))
+;;         ("C Project" :root-contains-files (".git" "Makefile"))
+;;         ("Go Project" :root-contains-files (".git") :path-matches "~/go"
+;;          :filename-regex ,(regexify-ext-list '(go))
+;;          :on-hit (lambda (p) (setenv "GOPATH" "~/go")))
+;;         ))
 
-(defun project-root-rgrep ()
-  "Run the grep command from the current project root."
-  (interactive)
-  (with-project-root (call-interactively 'rgrep)))
+;; (defun project-root-rgrep ()
+;;   "Run the grep command from the current project root."
+;;   (interactive)
+;;   (with-project-root (call-interactively 'rgrep)))
 
-(global-unset-key (kbd "C-c p"))
-(global-set-key (kbd "C-c p f") 'ack-find-file)
-(global-set-key (kbd "C-c p t") 'ido-find-file-in-tag-files)
-(global-set-key (kbd "C-c p s") 'ack-find-same-file)
-(global-set-key (kbd "C-c p g") 'project-root-rgrep)
-(global-set-key (kbd "C-c p a") 'ag)
-(global-set-key (kbd "C-c p d") 'project-root-goto-root)
-(global-set-key (kbd "C-c p p") 'project-root-run-default-command)
+;; (global-unset-key (kbd "C-c q"))
+;; (global-set-key (kbd "C-c q f") 'ack-find-file)
+;; (global-set-key (kbd "C-c q t") 'ido-find-file-in-tag-files)
+;; (global-set-key (kbd "C-c q s") 'ack-find-same-file)
+;; (global-set-key (kbd "C-c q g") 'project-root-rgrep)
+;; (global-set-key (kbd "C-c q a") 'ag)
+;; (global-set-key (kbd "C-c q d") 'project-root-goto-root)
+;; (global-set-key (kbd "C-c q p") 'project-root-run-default-command)
 
 ;; improved mode detection
 
