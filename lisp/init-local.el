@@ -1,4 +1,7 @@
-;; override some of steve's decisions
+;;; init-local --- override some of Steve's decisions
+;;; Commentary:
+;;; Code:
+
 (setq-default line-spacing 0.2)
 (global-set-key (kbd "M-+") 'default-text-scale-increase)
 (global-set-key (kbd "M--") 'default-text-scale-decrease)
@@ -20,6 +23,10 @@
 ;; (require-package 'visual-fill-column)
 ;; (require 'visual-fill-column)
 ;; (add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
+
+;; turn on auto-fill and flyspell mode for markdown files
+(add-hook 'markdown-mode-hook 'flyspell-mode)
+(add-hook 'markdown-mode-hook 'auto-fill-mode)
 
 ;; additional packages
 ;;--------------------
@@ -43,6 +50,7 @@
 ;; (define-key popup-menu-keymap (kbd "M-p") 'popup-previous)
 
 (defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
+  "Compute PROMPT for isearch popup given CHOICES using optional DISPLAY-FN."
   (when (featurep 'popup)
     (popup-menu*
      (mapcar
@@ -81,6 +89,7 @@
 (require 'rvm)
 
 (defun rvm--rvmrc-read-version (path-to-rvmrc)
+  "What is PATH-TO-RVMRC."
   (with-temp-buffer
     (insert-file-contents path-to-rvmrc)
     (while (re-search-forward "#.*$" nil t)
@@ -97,16 +106,17 @@
 (require 'ruby-compilation)
 
 (defadvice ruby-compilation--adjust-paths (after ruby-compilation-fix-crs activate)
-  "remove trailing carriage returns from ruby compilation output."
+  "Remove trailing carriage return from ruby compilation output."
   (setq ad-return-value (replace-regexp-in-string "\r$" "" ad-return-value)))
 ;; (ad-unadvise 'ruby-compilation-adjust-paths)
 
 (defun ruby-compilation-rake-unconditionally ()
-  "run rake unconditionally."
+  "Run rake unconditionally."
   (interactive)
   (pop-to-buffer (ruby-compilation-do "rake" (list ruby-compilation-executable-rake))))
 
 (defadvice ruby-compilation-do (before skaes/ruby-compilation-do activate)
+  "I don not think this is doing what it should."
   (rvm-activate-corresponding-ruby))
 
 (add-hook 'ruby-mode-hook (lambda () (local-set-key (kbd "C-x r") 'ruby-compilation-rake-unconditionally)))
@@ -123,7 +133,7 @@
       "^[ \t]*test[ \t]+\"\\(.+?\\)\"[ \t]+do[ \t]*\n")
 
 (defun ruby-compilation-this-test-name ()
-  "find the first test case before point."
+  "Find the first test case before point."
   (interactive)
   (save-excursion
     ;; (message "%s:%s" (current-buffer) (point))
@@ -170,11 +180,13 @@
 
  ;; Display ido results vertically, rather than horizontally
 (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
-(defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
-(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
-
+(defun ido-disable-line-truncation ()
+  "Disable line truncation in ido."
+  (set (make-local-variable 'truncate-lines) nil))
+(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
 
 (defun ido-find-file-in-tag-files ()
+  "Find file in tag file."
   (interactive)
   (save-excursion
     (let ((enable-recursive-minibuffers t))
@@ -218,7 +230,7 @@
 (define-key global-map [f6] 'my-ido-project-files)
 
 (defun my-ido-find-tag ()
-  "Find a tag using ido"
+  "Find a tag using ido."
   (interactive)
   (tags-completion-table)
   (let (tag-names)
@@ -312,7 +324,8 @@
       (setq com-filter-last-position end)
       )))
 
-
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yaml\\.erb\\'" . yaml-mode))
 
 ;;-------------------------------------------------------
 ;; reset colors when running inside terminal
@@ -321,6 +334,7 @@
   (progn
     (set-face-background 'default "black")
     (set-face-foreground 'default "white")
-   ))
+    ))
 
 (provide 'init-local)
+;;; init-local ends here
