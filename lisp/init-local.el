@@ -7,7 +7,14 @@
 (global-set-key (kbd "M--") 'default-text-scale-decrease)
 
 ;; I don't think I like electric pair mode. turn it off.
-(electric-pair-mode -1)
+(add-hook 'after-init-hook
+          (lambda ()
+            (setq sanityinc/lispy-modes-hook
+                  (remove 'enable-paredit-mode sanityinc/lispy-modes-hook))
+            (electric-pair-mode nil)
+            (remove-hook 'post-self-insert-hook 'electric-pair-post-self-insert-function)
+            (remove-hook 'self-insert-uses-region-functions 'electric-pair-will-use-region))
+          't)
 
 ;; and I prefer classic emacs undo
 (global-undo-tree-mode -1)
