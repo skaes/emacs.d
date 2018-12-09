@@ -64,9 +64,9 @@
 (global-set-key (kbd "M-C-7") (lambda () (interactive) (modify-frame-parameters nil `((alpha . 100)))))
 
 
-(when *is-a-mac*
-  (when (maybe-require-package 'ns-auto-titlebar)
-    (ns-auto-titlebar-mode)))
+;; (when *is-a-mac*
+;;   (when (maybe-require-package 'ns-auto-titlebar)
+;;     (ns-auto-titlebar-mode)))
 
 
 (setq frame-title-format
