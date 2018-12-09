@@ -302,6 +302,27 @@
 (setq auto-mode-alist (cons '("\.rjs$" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.rtex$" . latex-mode) auto-mode-alist))
 
+
+(defun go-mod-hide-indirect-lines ()
+  "Hide indirect module dependencies."
+  (interactive)
+  (hide-lines-matching "// indirect")
+  )
+
+(defun go-mod-show-indirect-lines ()
+  "Hide indirect module dependencies."
+  (interactive)
+  (hide-lines-show-all)
+  )
+
+(add-hook 'm2-mode-hook
+          (lambda () (if (equal (buffer-name) "go.mod")
+                    (progn
+                      (go-mod-hide-indirect-lines)
+                      (local-set-key (kbd "C-c h") 'go-mod-hide-indirect-lines)
+                      (local-set-key (kbd "C-c s") 'go-mod-show-indirect-lines)
+                      ))))
+
 (add-hook 'ruby-mode-hook (lambda () (local-set-key [f5] 'sanityinc/ruby-toggle-hash-syntax)))
 
 ;; (require 'guess-offset)
