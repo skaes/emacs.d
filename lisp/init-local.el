@@ -16,9 +16,6 @@
             (remove-hook 'self-insert-uses-region-functions 'electric-pair-will-use-region))
           't)
 
-;; and I prefer classic emacs undo
-(global-undo-tree-mode -1)
-
 ;; enable cua keys only after shift region select
 (setq cua-enable-cua-keys 'shift)
 
